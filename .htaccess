@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^([A-Za-z0-9-]+)/?$ ?p=$1 [L]
+RewriteRule ^/?([-A-Za-z0-9]+)/([-A-Za-z0-9]+)/?$ ?p=$1&game_id=$2 [L]
+RewriteRule ^/?([-A-Za-z0-9]+)/([-A-Za-z0-9]+)/?$ ?p=$1&game_id=$2 [L]
+RewriteRule ^([a-zA-Z0-9+\-\(\)]+)/([a-zA-Z0-9+\-]+)/([a-zA-Z0-9+\-]+)/?$ ?p=$1&game_id=$2&leerlingennummer=$3 [L]
+RewriteRule ^([a-zA-Z0-9+\-\(\)]+)/([a-zA-Z0-9+\-]+)/([a-zA-Z0-9+\-]+)/([a-zA-Z0-9+\-]+)/?$ ?p=$1&game_id=$2&leerlingennummer=$3&actie=$4 [L]

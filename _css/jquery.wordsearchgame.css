@@ -1,0 +1,68 @@
+
+/* Style for grid cells */
+.rf-tgrid {
+    
+    font-family: 'Cabin', sans-serif;
+    font-weight: normal;
+    font-size: 30px;
+    margin: 1px;
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+
+}
+
+/* Style for the grid */
+.rf-tablestyle {
+    cursor: pointer;
+
+}
+
+/* Style for the div containing the grid */
+#rf-searchgamecontainer {
+    float: left;
+    padding-right: 50px; 
+}
+
+/* Style for the div containing the word list */
+#rf-wordcontainer {
+    font-family: 'Cabin', sans-serif;
+    float :left;
+    padding-right: 50px; 
+    cursor: default;
+	margin : 1em 1em 1em 0;
+	
+	cursor: pointer;	
+}
+
+/* Style for the words that have been found */
+.rf-foundword {
+    font-family: 'Cabin', sans-serif;
+	text-decoration : line-through;
+	font-style : italic;
+
+}
+
+#rf-tablegrid .rf-armed {
+/*	background: lightcyan;*/
+}
+
+#rf-tablegrid .rf-highlight {
+    background: red;
+}
+
+
+#rf-tablegrid .rf-glowing {
+	background-color:#39F;
+        
+}
+
+#rf-tablegrid .rf-selected {
+	background:#36F;
+}
+
+/* style for words that didn't make it on the grid */
+.rf-pfalse {
+    color: gray;
+    visibility: hidden; 
+}
