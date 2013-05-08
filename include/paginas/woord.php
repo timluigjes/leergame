@@ -182,6 +182,9 @@ if(isset($_SESSION['ingelogd']))
 			{	
 				console.log("einde spel");
 					$("#timebar").stop();
+					$("#timebar").animate({
+					width: "960px"
+				}, 2000);
 					$(".image,.woord_letter,.letter_keuze").animate({
 					opacity: 0.00
 					}, 1500, function() {

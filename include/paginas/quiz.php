@@ -125,7 +125,7 @@ if(isset($_SESSION['ingelogd']))
 			var arrayKeuzes = new Array("1","2","3","4");
 			arrayKeuzes.splice($.inArray(goedeantwoordCheck, arrayKeuzes),1);
 			var keuze = arrayKeuzes[Math.floor(Math.random()*arrayKeuzes.length)];
-			window.verwijderkeuze = "quiz_antwoord" + keuze + "_tekst";
+			window.verwijderkeuze = "quiz_antwoord" + keuze;
 			$("."+verwijderkeuze+"").remove();
 			arrayKeuzes.splice($.inArray(keuze, arrayKeuzes),1);
 
@@ -140,10 +140,22 @@ if(isset($_SESSION['ingelogd']))
    				opacity: 0.00
  				 }, 1500, function() {
 					 $(".question").html(arrayVraag[i]);
-					 $(".quiz_antwoord1_tekst").html("A <br>" + arrayAntwoord1[i]);
-					 $(".quiz_antwoord2_tekst").html("B <br>" + arrayAntwoord2[i]);
-				 	$(".quiz_antwoord3_tekst").html("C <br>" + arrayAntwoord3[i]);
-					 $(".quiz_antwoord4_tekst").html("D <br>" + arrayAntwoord4[i]);
+					 if(arraySoortVraag[i] == "afbeelding")
+					 {
+						 $(".quiz_antwoord1").html("A <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord1[i] + "\" width=\"150\"> ");
+						 $(".quiz_antwoord2").html("B <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord2[i] + "\" width=\"150\"> ");
+						 $(".quiz_antwoord3").html("C <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord3[i] + "\" width=\"150\"> ");
+						$(".quiz_antwoord4").html("D <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord4[i] + "\" width=\"150\"> ");
+						 $("#quiz_antwoorden").css({"width": "600", "height": "425"});
+					 }
+					 else
+					 {
+						 $(".quiz_antwoord1").html("A <br>" + arrayAntwoord1[i]);
+						 $(".quiz_antwoord2").html("B <br>" + arrayAntwoord2[i]);
+						 $(".quiz_antwoord3").html("C <br>" + arrayAntwoord3[i]);
+						 $(".quiz_antwoord4").html("D <br>" + arrayAntwoord4[i]);
+						 $("#quiz_antwoorden").css({"width": "450", "height": "200"});
+					 }
 				 	$(".goedeantwoord").val(arrayGoedeAntwoord[i]);
 				 
 				 	goedeantwoordCheck = document.getElementById("goedeantwoord").value;
@@ -158,6 +170,7 @@ if(isset($_SESSION['ingelogd']))
 				$("#quiz_antwoorden,.question").animate({
    				opacity: 0.00
 				}, 1500, function() {
+					$("#timebar").stop();
 					continueCountDown = false;
 					$("#quiz_antwoorden,.question,.cheat").remove();
 					$("#content").append("<h3 class=\"question\">Einde quiz</h3>");
@@ -190,16 +203,29 @@ if(isset($_SESSION['ingelogd']))
 		
 		$(document).ready(function(){
  				 $(".question").append(arrayVraag[i]);
-				 $(".quiz_antwoord1_tekst").append(arrayAntwoord1[i]);
-				 $(".quiz_antwoord2_tekst").append(arrayAntwoord2[i]);
-				 $(".quiz_antwoord3_tekst").append(arrayAntwoord3[i]);
-				 $(".quiz_antwoord4_tekst").append(arrayAntwoord4[i]);
-				 $(".goedeantwoord").val(arrayGoedeAntwoord[i])
+				  if(arraySoortVraag[i] == "afbeelding")
+					{
+						$(".quiz_antwoord1").html("A <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord1[i] + "\" width=\"150\"> ");
+						 $(".quiz_antwoord2").html("B <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord2[i] + "\" width=\"150\"> ");
+						 $(".quiz_antwoord3").html("C <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord3[i] + "\" width=\"150\"> ");
+						 $(".quiz_antwoord4").html("D <br><img src=\"/_img/quiz_afbeeldingen/" + arrayAntwoord4[i] + "\" width=\"150\"> ");
+						 $("#quiz_antwoorden").css({"width": "600", "height": "425"});
+					}
+					else
+					{
+					 $(".quiz_antwoord1").append(arrayAntwoord1[i]);
+					 $(".quiz_antwoord2").append(arrayAntwoord2[i]);
+					 $(".quiz_antwoord3").append(arrayAntwoord3[i]);
+					 $(".quiz_antwoord4").append(arrayAntwoord4[i]);
+					  $(".quiz_antwoord1").removeClass("quiz_afbeelding1");
+					  $("#quiz_antwoorden").css({"width": "450", "height": "200"});
+					}
+				 $(".goedeantwoord").val(arrayGoedeAntwoord[i]);
 				 countDown();
 				 
 				 goedeantwoordCheck = document.getElementById("goedeantwoord").value;
 				 
-				 $(".quiz_antwoord1_tekst").click(function(){
+				 $(".quiz_antwoord1").click(function(){
 					 if(goedeantwoordCheck == 1)
 					 {
 						 console.log("Antwoord is goed");
@@ -218,7 +244,7 @@ if(isset($_SESSION['ingelogd']))
 					 }
 				 });
 				 
-				  $(".quiz_antwoord2_tekst").click(function(){
+				  $(".quiz_antwoord2").click(function(){
 					 if(goedeantwoordCheck == 2)
 					 {
 						 console.log("Antwoord is goed");
@@ -237,7 +263,7 @@ if(isset($_SESSION['ingelogd']))
 					 }
 				 });
 				 
-				  $(".quiz_antwoord3_tekst").click(function(){
+				  $(".quiz_antwoord3").click(function(){
 					 if(goedeantwoordCheck == 3)
 					 {
 						 console.log("Antwoord is goed");
@@ -256,7 +282,7 @@ if(isset($_SESSION['ingelogd']))
 					 }
 				 });
 				 
-				  $(".quiz_antwoord4_tekst").click(function(){
+				  $(".quiz_antwoord4").click(function(){
 					 if(goedeantwoordCheck == 4)
 					 {
 						 console.log("Antwoord is goed");
@@ -279,14 +305,14 @@ if(isset($_SESSION['ingelogd']))
 		echo '</script>';
 ?>
 	<h3 class="question"></h3>
+    <span class="cheat fr" onclick="cheat()">Cheat<br /><span style="font-size:13px;" onclick="cheat()">10 credits</span></span>
 	<div id="quiz_antwoorden">
-	<span class="quiz_antwoord1_tekst">A<br></span>
-    <span class="quiz_antwoord2_tekst">B<br></span>
-    <span class="quiz_antwoord3_tekst">C<br></span>
-    <span class="quiz_antwoord4_tekst">D<br></span>
+	<span class="quiz_antwoord1">A<br></span>
+    <span class="quiz_antwoord2">B<br></span>
+    <span class="quiz_antwoord3">C<br></span>
+    <span class="quiz_antwoord4">D<br></span>
 	</div>
     <form action="" id="hiddenForm" method="POST"><input type="hidden" value="" class="goedeantwoord" id="goedeantwoord"></form>
-    <span class="cheat fr" onclick="cheat()">Cheat<br /><span style="font-size:13px;" onclick="cheat()">10 credits</span></span>
     <h3 class="answer" id="answer"></h3>
     <div id="timebar"></div>
         
